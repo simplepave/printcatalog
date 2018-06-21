@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'GothaProBol';
+    src: url('GothaProBol.eot');
+    src: url('GothaProBol.eot') format('embedded-opentype'),
+         url('GothaProBol.woff2') format('woff2'),
+         url('GothaProBol.woff') format('woff'),
+         url('GothaProBol.ttf') format('truetype'),
+         url('GothaProBol.svg#GothaProBol') format('svg');
+}
+
+@font-face {
+    font-family: 'GothamProBlack';
+    src: url('GothamProBlack.eot');
+    src: url('GothamProBlack.eot') format('embedded-opentype'),
+         url('GothamProBlack.woff2') format('woff2'),
+         url('GothamProBlack.woff') format('woff'),
+         url('GothamProBlack.ttf') format('truetype'),
+         url('GothamProBlack.svg#GothamProBlack') format('svg');
+}

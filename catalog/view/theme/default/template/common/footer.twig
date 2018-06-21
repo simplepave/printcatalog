@@ -1,0 +1,35 @@
+    <footer>
+      <section>
+        <div class="top_row row_flex">
+          <a class="logo" href="{{ home }}"></a>
+          {{ search }}
+          <nav>
+            <ul>
+              <li><a href="#">Глоссарий</a></li>
+              <li><a href="#">Рейтинги</a></li>
+              <li><a href="#">Статьи</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="row_flex">
+          <p>{{ powered }}</p>
+          <div class="social_block">
+            <span>Присоединяйтесь</span>
+            <ul>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </footer>
+    <script type="text/javascript" src="catalog/view/javascript/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="catalog/view/javascript/js/jquery.formstyler.js"></script>
+    <script type="text/javascript" src="catalog/view/javascript/js/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="catalog/view/javascript/js/scripts.js"></script>
+{% for script in scripts %}
+    <script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+  </body>
+</html>

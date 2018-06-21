@@ -1,0 +1,253 @@
+@media (min-width: 280px) and (max-width: 1155px) {
+	.product_types > ul,
+	.high_ratings > ul,
+	.products_services.row_flex,
+	.reviews_list,
+	.articles ul,
+	.service_card.row_flex {
+		display:block;
+	}
+	.product_types > ul > li,
+	.high_ratings > ul > li,
+	.reviews_list li,
+	.articles ul li {
+		margin:0 5px 25px;
+	}
+	.products_services li {
+		max-width:550px;
+		width:100%;
+		margin:0 5px 10px;
+	}
+	.left_col {
+		margin:0 auto 10px;
+	}
+	.right_col {
+		margin:0 auto;
+	}
+}
+@media (min-width: 280px) and (max-width: 1080px) {
+	.reviews_block.row_flex {
+		display:block;
+	}
+	.reviews_item {
+		max-width:340px;
+		width:100%;
+		margin:0 auto 10px;
+	}
+	.reviews_slider_wrap {
+		max-width:800px;
+		width:100%;
+		-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.08);
+		-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.08);
+		box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.08);
+		margin:0 auto;
+	}
+	.glossary {
+		padding:25px;
+	}
+}
+@media (min-width: 280px) and (max-width: 1000px) {
+	header,
+	footer .row_flex,
+	.glossary.row_flex {
+		text-align:center;
+		display:block;
+	}
+	.logo,
+	.search {
+		text-align:left;
+		margin:0 5px 20px;
+	}
+	nav ul {
+		text-align:center;
+	}
+	nav ul li {
+		margin:0 0 5px !important;
+	}
+	nav ul li a {
+		padding:0 25px;
+	}
+	footer p {
+		margin-bottom:20px;
+	}
+	.title {
+		background-size:cover;
+	}
+	.product_types > ul > li .icon,
+	.product_types > ul > li p {
+		max-width:none;
+		width:45%;
+	}
+	.company_card {
+		padding:0 15px 20px;
+	}
+	.company_card > div,
+	.articles_more > div {
+		display:block;
+	}
+	.articles_more .img {
+		margin:0 auto 10px;
+	}
+	.company_card .text,
+	.articles_more .text {
+		width:auto;
+		margin:0 auto;
+		padding:0;
+		display:table;
+	}
+	.reviews_form form {
+    	padding:25px 20px;
+	}
+	.glossary .col {
+		margin:0 10px;
+	}
+	.ratings table {
+		width:1000px;
+	}
+	.table-responsive {
+		max-width:100%;
+		overflow: auto;
+	}	
+}
+@media (min-width: 280px) and (max-width: 780px) {
+	.filter,
+	.brochure_wrapp {
+		padding:35px 20px;
+	}
+}
+@media (min-width: 280px) and (max-width: 700px) {
+	.slider_reviews .owl-dots {
+		width:200px;
+		margin-left:-100px;
+	}
+	.slider_reviews .owl-dot {
+		margin:0 2px;
+	}
+	.slider_reviews .owl-nav {
+		width:280px;
+		margin-left:-140px;
+	}
+	.reviews_form form .row_flex,
+	.filter .row_flex {
+		display:block;
+	}
+	.reviews_form .col {
+		width:100%;
+	}
+	.head {
+		text-align:center;
+		display:block;
+	}
+	.head div {
+		width:100%;
+		text-align:center;
+		padding:10px 0;
+	}
+	.filter .col {
+		width:100%;
+	}
+}
+@media (min-width: 280px) and (max-width: 480px) {
+	h2 {
+		font-size:20px;
+		line-height:24px;
+		text-align:center;
+	}
+	.title {
+		text-align:center;
+	}
+	.bread-crumbs ul li {
+		margin:0 10px 5px;
+		padding:0;
+	}
+	.bread-crumbs ul li:after {
+		display:none;
+	}
+	.products_services li a {
+		display:block;
+	}
+	.products_services li div {
+		max-width:none;
+		text-align:center;
+		padding:20px 0;
+	}
+	.products_services li p {
+		max-width:none;
+		text-align:center;
+	}
+	.reviews_slider_wrap {
+		height:auto;
+	}
+	.reviews_slider .item {
+		width:240px;
+	}
+	.slider_reviews .item {
+		width:265px;
+	}
+	.slider_reviews .col,
+	.reviews_list li .col {
+		width:240px;
+	}
+	.reviews_slider .item div,
+	.slider_reviews .col div,
+	.reviews_list li .col div {
+		width:210px;
+	}
+	.products_services li,
+	.product_types > ul > li {
+		max-width:none;
+		width:100%;
+		margin:0 0 10px;
+	}
+	.high_ratings > ul > li,
+	.reviews_list li,
+	.articles ul li {
+		margin:0 0 10px;
+	}
+	.high_ratings > ul > li img {
+		height:100%;
+	}
+	.social_block span {
+		margin-bottom:10px;
+		display:block;
+	}
+	.social_block ul {
+		margin:0;
+	}
+	.social_block ul li {
+		margin:0 4px;
+	}
+	.reviews_form form {
+		padding:20px 10px;
+	}
+	.align {
+		text-align:center;
+	}
+	.align ul {
+		padding:0 0 10px;
+		float:none;
+	}
+	.articles li .text {
+		padding:20px;
+	}
+	.articles_more {
+		padding:20px 15px;
+	}
+	.brochure h2 {
+		margin:0 auto 20px;
+		display:table;
+	}
+	.brochure ul li {
+		width:270px;
+	}
+	.head_nav div {
+		width:105px;
+		margin-right:5px;
+	}
+	.nav ul li div {
+		width:75px;
+	}
+	.nav ul li p {
+		width:200px;
+	}
+}
