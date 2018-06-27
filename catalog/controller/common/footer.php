@@ -1,6 +1,12 @@
 <?php
 class ControllerCommonFooter extends Controller {
 	public function index() {
+		$this->load->model('catalog/information');
+
+		$res = $this->model_catalog_information->getInformation(7);
+		$data['glossary_title'] = $res['title'];
+		$data['glossary_href'] = $this->url->link('information/information', 'information_id=' . $res['information_id']);
+
 		$this->load->language('common/footer');
 
 		$this->load->model('catalog/information');
@@ -28,6 +34,8 @@ class ControllerCommonFooter extends Controller {
 		$data['order'] = $this->url->link('account/order', '', true);
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
+
+		$data['articles_href'] = $this->url->link('newsblog/category', 'newsblog_path=1');
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), date('Y', time()), $this->config->get('config_name'));
 

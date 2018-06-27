@@ -1,0 +1,54 @@
+{{ header }}
+<div class="title">
+  <section>
+    <h1>{{ heading_title }}</h1>
+        <div class="bread-crumbs">
+          <ul>
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+            </ul>
+        </div>
+    </section>
+</div>
+<div class="container_page">
+  <section>
+      <div class="articles_more">
+          <div class="row_flex">
+              {% if popup %}
+              <div class="img"><img src="{{ popup }}" alt="{{ heading_title }}"></div>
+              {% endif %}
+                <div class="text">
+                  <h3>{{ heading_title }}</h3>
+                    <p>{{ preview }}</p>
+                </div>
+            </div>
+            {{ description }}
+        </div>
+{{ content_top }}
+{% if articles %}
+      <div id="articles-related" class="articles">
+          <h2>{{ text_related }}</h2>
+            <ul>
+            {% for article in articles %}
+                <li>
+                    <div class="img"><a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['name'] }}"></a></div>
+                    <div class="text">
+                        <h3>{{ article['name'] }}</h3>
+                        <p>{{ article['preview'] }}</p>
+                        <a href="{{ article['href'] }}">Подробнее</a>
+                    </div>
+                </li>
+              {% endfor %}
+            </ul>
+            {% if pagination_related %}
+            <a id="more-articles-related" href="{{ pagination_related }}">Показать еще</a>
+            {% endif %}
+        </div>
+{% endif %}
+    </section>
+</div>
+<section>
+{{ content_bottom }}
+</section>
+{{ footer }}

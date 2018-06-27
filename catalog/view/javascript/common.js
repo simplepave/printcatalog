@@ -493,3 +493,73 @@ $(document).delegate('.agree', 'click', function(e) {
 		});
 	}
 })(window.jQuery);
+
+/**
+ * SimplePAVE
+ */
+
+jQuery(document).ready(function($){
+
+	/**
+	 * More Articles
+	 */
+
+	$('#more-articles').click(function(e){console.log($(this));
+		e.preventDefault();
+	   var t = $(this);
+	   var href = t.attr('href');
+
+		$.ajax({
+			url: href,
+			dataType: 'json',
+			beforeSend: function() {
+				t.css({'filter': 'grayscale(100%) contrast(90%)'});
+			},
+			complete: function() {
+				t.css({'filter': 'none'});
+			},
+			success: function(json) {console.log(json);
+				if (json.success) {
+					if (!json.next) t.hide();
+					else t.attr('href', json.next.replace(/&amp;/g, "&"));
+
+					$('#articles ul').append(json.articles);
+			}},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+
+	/**
+	 * More Articles Related
+	 */
+
+	$('#more-articles-related').click(function(e){console.log($(this));
+		e.preventDefault();
+	   var t = $(this);
+	   var href = t.attr('href');
+
+		$.ajax({
+			url: href,
+			dataType: 'json',
+			beforeSend: function() {
+				t.css({'filter': 'grayscale(100%) contrast(90%)'});
+			},
+			complete: function() {
+				t.css({'filter': 'none'});
+			},
+			success: function(json) {console.log(json);
+				if (json.success) {
+					if (!json.next) t.hide();
+					else t.attr('href', json.next.replace(/&amp;/g, "&"));
+
+					$('#articles-related ul').append(json.articles);
+			}},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+
+});

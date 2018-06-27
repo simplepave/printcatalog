@@ -1,0 +1,12 @@
+{% if articles %}
+{% for article in articles %}
+<li>
+	<div class="img"><a href="{{ article['href'] }}"><img src="{{ article['thumb'] }}" alt="{{ article['name'] }}"></a></div>
+	<div class="text">
+   	<h3>{{ article['name'] }}</h3>
+   	<p>{{ article['preview'] }}</p>
+   	<a href="{{ article['href'] }}">Подробнее</a>
+	</div>
+</li>
+{% endfor  %}
+{% endif %}
