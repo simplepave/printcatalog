@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <code>testimonials_lite_back_end</code>
+    <name>Testimonials Lite Back End</name>
+    <version>1.4.2</version>
+    <author>SimplePAVE</author>
+    <link>http://simplepave.ru</link>
+    <file path="admin/controller/common/column_left.php">
+        <operation>
+            <search><![CDATA[if ($this->user->hasPermission('access', 'catalog/information')) {]]></search>
+            <add position="before"><![CDATA[
+			// Testimonials
+			if ($this->user->hasPermission('access', 'testimonial/testimonial')) {
+				$catalog[] = array(
+					'name'	   => 'Testimonials & SimplePAVE',
+					'href'     => $this->url->link('testimonial/testimonial', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()
+				);
+			}
+            ]]></add>
+        </operation>
+    </file>
+    <file path="admin/controller/setting/setting.php">
+        <operation>
+            <search><![CDATA[$data['captcha_pages'] = array();]]></search>
+            <add position="after"><![CDATA[
+				$data['captcha_pages'][] = array(
+			    'text'  => 'Testimonials',
+			    'value' => 'testimonial'
+		        );
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[$data['mail_alerts'] = array();]]></search>
+            <add position="after"><![CDATA[
+				$data['mail_alerts'][] = array(
+			    'text'  => 'Testimonials',
+			    'value' => 'testimonial'
+		        );
+            ]]></add>
+        </operation>
+    </file>
+</modification>

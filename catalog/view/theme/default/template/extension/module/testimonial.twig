@@ -1,0 +1,58 @@
+{% if layout==1 %}
+<div class="reviews_page">
+    <div class="row_flex">
+        {% if heading_title %}
+        <h2>{{ heading_title }}</h2>
+        {% endif %}
+        {% if button_all %}
+        <a href="{{ keyword }}">{{ button_all_text }}</a>
+        {% endif %}
+    </div>
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <div>
+                <h3>{{ review['author'] }}</h3>
+                <p>{{ review['text'] }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<section class="reviews_video">
+    <div class="row_flex">
+        <div class="reviews">
+            <div class="head row_flex">
+                {% if heading_title %}
+                <h2>{{ heading_title }}</h2>
+                {% endif %}
+                {% if button_all %}
+                <a href="{{ keyword }}">{{ button_all_text }}</a>
+                {% endif %}
+            </div>
+            <ul>
+                {% for review in reviews %}
+                <li>
+                    <div>
+                        <h3>{{ review['author'] }}</h3>
+                        <p>{{ review['text'] }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="video">
+            <div class="head row_flex">
+                <h2>Видеобзоры</h2>
+                <a target="_blank" href="https://www.youtube.com/watch?v=tg4rAAGYpxI&list=PUlA-6UPW5RgvE4tGjz47FRQ">Все видеобзоры</a>
+            </div>
+            <div class="video_block">
+                <p class="video-container video-container-home">
+                    <iframe src="//www.youtube.com/embed/Ux-W6j53n8Q" class="note-video-clip" frameborder="0"></iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

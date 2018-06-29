@@ -1,0 +1,33 @@
+{% if ratings %}
+<div id="enterprises" class="high_ratings">
+	<h2>{{ heading_title }}</h2>
+	<ul>
+		{% for rating in ratings %}
+		<li>
+			<div class="img"><img src="{{ rating.image }}" alt="{{ rating.name }}"></div>
+			<div class="text_wrap">
+				<div class="col">
+					<div>
+						<h3>{{ rating.name }}</h3>
+						<div class="row_flex">
+							<p>{{ rating.review }} отзывов</p>
+							<div>
+								<span>{{ rating.rating }}</span>
+								<ul>
+					            {% for i in 0..rating.ceil if i < rating.ceil %}
+					            <li><a href="#"></a></li>
+					            {% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	{% if next %}
+	<a id="more-enterprises" href="{{ next }}">Показать еще</a>
+	{% endif %}
+</div>
+{% endif %}

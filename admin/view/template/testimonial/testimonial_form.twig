@@ -1,0 +1,143 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-review" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1><i class="fa fa-comments"></i> {{ heading_title }}<div class="dev-name"></h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-review" class="form-horizontal">
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-author">{{ entry_author }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="author" value="{{ author }}" placeholder="{{ entry_author }}" id="input-author" class="form-control" />
+              {% if error_author %}
+              <div class="text-danger">{{ error_author }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-email">E-mail</label>
+            <div class="col-sm-10">
+              <input type="text" name="email" value="{{ email }}" placeholder="E-mail" id="input-email" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-date-added">{{ entry_date_added }}</label>
+            <div class="col-sm-3">
+              <div class="input-group date">
+                <input type="text" name="date_added" value="{{ date_added }}" placeholder="{{ entry_date_added }}" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                    </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-text">{{ entry_text }}</label>
+            <div class="col-sm-10">
+              <textarea name="text" cols="60" rows="8" placeholder="{{ entry_text }}" id="input-text" class="form-control">{{ text }}</textarea>
+              {% if error_text %}
+              <span class="text-danger">
+              {{ error_text }}</span>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-name">{{ entry_rating }}</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="rating" value="0" {% if rating == 0 %}checked="checked"{% endif %} />
+                0
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="rating" value="1" {% if rating == 1 %}checked="checked"{% endif %} />
+                1
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="rating" value="2" {% if rating == 2 %}checked="checked"{% endif %} />
+                2
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="rating" value="3" {% if rating == 3 %}checked="checked"{% endif %} />
+                3
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="rating" value="4" {% if rating == 4 %}checked="checked"{% endif %} />
+                4
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="rating" value="5" {% if rating == 5 %}checked="checked"{% endif %} />
+                5
+              </label>
+              {% if error_rating %}
+              <div class="text-danger">{{ error_rating }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="status" id="input-status" class="form-control">
+                {% if status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"><!--
+  $('.date').datetimepicker({
+    pickTime: false
+  });
+
+  $('.time').datetimepicker({
+    pickDate: false
+  });
+
+  $('.datetime').datetimepicker({
+    pickDate: true,
+    pickTime: true
+  });
+  //--></script>
+<style>
+  .fa-comments {
+    color:#00BFFF;
+  }
+  .dev-name a{
+    color: #CFCFCF;
+  }
+  .dev-name {
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 200px;
+    font-size: 12px;
+  }
+</style>
+{{ footer }}

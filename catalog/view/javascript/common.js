@@ -504,7 +504,7 @@ jQuery(document).ready(function($){
 	 * More Articles
 	 */
 
-	$('#more-articles').click(function(e){console.log($(this));
+	$('#more-articles').click(function(e){
 		e.preventDefault();
 	   var t = $(this);
 	   var href = t.attr('href');
@@ -518,7 +518,7 @@ jQuery(document).ready(function($){
 			complete: function() {
 				t.css({'filter': 'none'});
 			},
-			success: function(json) {console.log(json);
+			success: function(json) {
 				if (json.success) {
 					if (!json.next) t.hide();
 					else t.attr('href', json.next.replace(/&amp;/g, "&"));
@@ -535,7 +535,7 @@ jQuery(document).ready(function($){
 	 * More Articles Related
 	 */
 
-	$('#more-articles-related').click(function(e){console.log($(this));
+	$('#more-articles-related').click(function(e){
 		e.preventDefault();
 	   var t = $(this);
 	   var href = t.attr('href');
@@ -549,12 +549,140 @@ jQuery(document).ready(function($){
 			complete: function() {
 				t.css({'filter': 'none'});
 			},
-			success: function(json) {console.log(json);
+			success: function(json) {
 				if (json.success) {
 					if (!json.next) t.hide();
 					else t.attr('href', json.next.replace(/&amp;/g, "&"));
 
 					$('#articles-related ul').append(json.articles);
+			}},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+
+	/**
+	 * Testimonials
+	 */
+
+	function testimonialsMore(t) {
+	   var href = t.attr('href');
+
+		$.ajax({
+			url: href,
+			dataType: 'json',
+			beforeSend: function() {
+				t.css({'filter': 'grayscale(100%) contrast(90%)'});
+			},
+			complete: function() {
+				t.css({'filter': 'none'});
+			},
+			success: function(json) {
+				if (json.success) {
+					if (!json.next) t.hide();
+					else t.attr('href', json.next.replace(/&amp;/g, "&"));
+
+					$('#review').append(json.review);
+			}},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+
+	if ($('#review').length && $('#more-review').length)
+		testimonialsMore($('#more-review'));
+
+	$('#more-review').click(function(e){
+		e.preventDefault();
+	   testimonialsMore($(this));
+	});
+
+	$('#form-review').submit(function (e) {
+		e.preventDefault();
+		var t = $(this);
+
+		$.ajax({
+			url: t.attr('action'),
+			type: 'post',
+			dataType: 'json',
+			data:  t.serialize(),
+			success: function (json) {
+				$('.text-success, .text-danger').remove();
+
+				if (json['error']) {
+					$('#block-button-review').before('<div class="text-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+				}
+
+				if (json['success']) {
+					$('#block-button-review').before('<div class="text-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+
+					$('#form-review select[name=\'product_id\']').prop('selectedIndex', 0).trigger( "change" );
+					$('#form-review input[name=\'name\']').val('');
+					$('#form-review input[name=\'email\']').val('');
+					$('#form-review textarea[name=\'text\']').val('');
+					$('#form-review input[name=\'rating\']:checked').prop('checked', false);
+
+					setTimeout(function(){
+						$('.text-success').remove();
+					}, 10000);
+				}
+			}
+		});
+	});
+
+	/**
+	 * Rating
+	 */
+
+	function testimonialsRating(t) {
+	   var href = t.attr('href');
+
+		$.ajax({
+			url: href,
+			dataType: 'json',
+			success: function(json) {
+				if (json.success) $('#rating').html(json.rating);
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
+
+	if ($('#rating').length && $('.ratings_crumbs').length)
+		testimonialsRating($('.ratings_crumbs li:first a'));
+
+	$('.ratings_crumbs li a').click(function(e){
+		e.preventDefault();
+	   testimonialsRating($(this));
+	});
+
+	/**
+	 * More Enterprises Ratings
+	 */
+
+	$('#more-enterprises').click(function(e){
+		e.preventDefault();
+	   var t = $(this);
+	   var href = t.attr('href');
+
+		$.ajax({
+			url: href,
+			dataType: 'json',
+			beforeSend: function() {
+				t.css({'filter': 'grayscale(100%) contrast(90%)'});
+			},
+			complete: function() {
+				t.css({'filter': 'none'});
+			},
+			success: function(json) {
+				if (json.success) {
+					if (!json.next) t.hide();
+					else t.attr('href', json.next.replace(/&amp;/g, "&"));
+
+					$('#enterprises > ul').append(json.enterprises);
 			}},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

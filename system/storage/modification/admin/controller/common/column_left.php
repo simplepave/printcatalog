@@ -139,6 +139,16 @@ class ControllerCommonColumnLeft extends Controller {
 				);		
 			}
 			
+
+			// Testimonials
+			if ($this->user->hasPermission('access', 'testimonial/testimonial')) {
+				$catalog[] = array(
+					'name'	   => 'Testimonials & SimplePAVE',
+					'href'     => $this->url->link('testimonial/testimonial', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()
+				);
+			}
+            
 			if ($this->user->hasPermission('access', 'catalog/information')) {		
 				$catalog[] = array(
 					'name'	   => $this->language->get('text_information'),

@@ -11,6 +11,12 @@ class ControllerCommonFooter extends Controller {
 
 		$this->load->model('catalog/information');
 
+
+                $data['testimonial'] = array(
+                    'title' => 'Testimonials',
+                    'href'  => $this->url->link('testimonial/testimonial')
+                );
+            
 		$data['informations'] = array();
 
 		foreach ($this->model_catalog_information->getInformations() as $result) {

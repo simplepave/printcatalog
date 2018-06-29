@@ -1,0 +1,24 @@
+{% if ratings %}
+<tr>
+    <th></th>
+    <th>Название</th>
+    <th>Балл</th>
+    <th>Отзывы</th>
+    <th></th>
+</tr>
+{% for rating in ratings %}
+<tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ rating.name }}</td>
+    <td>{{ rating.rating }}</td>
+    <td>{{ rating.review }}</td>
+    <td>
+        <ul>
+            {% for i in 0..rating.ceil if i < rating.ceil %}
+            <li><a href="#"></a></li>
+            {% endfor %}
+        </ul>
+    </td>
+</tr>
+{% endfor %}
+{% endif %}

@@ -1,0 +1,72 @@
+{{ header }}
+{{ content_top }}
+<div class="title">
+    <section>
+        <h1>{{ heading_title }}</h1>
+        <div class="bread-crumbs">
+            <ul>
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+            </ul>
+        </div>
+    </section>
+</div>
+<div class="container">
+    <section>
+        <ul id="review" class="reviews_list"></ul>
+        <a id="more-review" href="{{ review|raw }}">Загрузить еще</a>
+{% if review_status %}
+        <div class="reviews_form">
+        {% if review_guest %}
+            <div class="head">
+                <div><img src="/image/catalog/common/icon-head.png" alt=""></div>
+                <h2>{{ text_write }}</h2>
+            </div>
+            <form action="{{ write|raw }}" id="form-review">
+                {% if products %}
+                <div class="select_col">
+                        <select name="product_id">
+                            <option value="">{{ text_select }}</option>
+                        {% for product in products  %}
+                            <option value="{{ product.product_id }}">{{ product.name }}</option>
+                        {% endfor %}
+                        </select>
+                </div>
+                {% endif %}
+                <div class="row_flex">
+                    <div class="col">
+                        <input class="input" type="text" name="name" value="{{ customer_name }}" placeholder="{{ entry_name }}">
+                    </div>
+                    <div class="col">
+                        <input class="input" type="email" name="email" placeholder="E-mail">
+                    </div>
+                </div>
+                <textarea name="text" placeholder="{{ entry_review }}"></textarea>
+                {{ captcha }}
+                <div id="block-button-review" class="align">
+                    <div class="col-rating">
+                        <label class="control-label">{{ entry_rating }}</label>
+                        <input type="radio" name="rating" class="radio" id="radio-1" value="1">
+                        <label for="radio-1"></label>
+                        <input type="radio" name="rating" class="radio" id="radio-2" value="2">
+                        <label for="radio-2"></label>
+                        <input type="radio" name="rating" class="radio" id="radio-3" value="3">
+                        <label for="radio-3"></label>
+                        <input type="radio" name="rating" class="radio" id="radio-4" value="4">
+                        <label for="radio-4"></label>
+                        <input type="radio" name="rating" class="radio" id="radio-5" value="5">
+                        <label for="radio-5"></label>
+                    </div>
+                    <input class="submit" type="submit" value="{{ button_continue }}">
+                </div>
+            </form>
+        {% else %}
+        {{ text_login }}
+        {% endif %}
+        </div>
+{% endif %}
+        {{ content_bottom }}
+    </section>
+</div>
+{{ footer }}

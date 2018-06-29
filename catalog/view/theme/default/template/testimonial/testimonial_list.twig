@@ -1,0 +1,15 @@
+{% if reviews %}
+{% for review in reviews %}
+<li>
+   <div class="col">
+      <div>
+         <h3>{{ review['author'] }}</h3>
+         <span>{{ review['date_added'] }}</span>
+      </div>
+      <p>{{ review['text'] }}</p>
+   </div>
+</li>
+{% endfor %}
+{% else %}
+<p>{{ text_no_reviews }}</p>
+{% endif %}

@@ -8,6 +8,7 @@ class ControllerCommonHeader extends Controller {
 		$data['glossary_href'] = $this->url->link('information/information', 'information_id=' . $res['information_id']);
 
 		$data['articles_href'] = $this->url->link('newsblog/category', 'newsblog_path=1');
+		$data['rating_href'] = $this->url->link('testimonial/rating');
 
 		// Analytics
 		$this->load->model('setting/extension');
