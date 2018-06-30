@@ -189,7 +189,8 @@ class ControllerNewsBlogArticle extends Controller {
 			$pagination->total = (int)$article_total;
 			$pagination->page = 1;
 			$pagination->limit = 3;
-			$pagination->url = $this->url->link('newsblog/related', 'newsblog_path=' . $this->request->get['newsblog_path'] . '&newsblog_article_id=' . $newsblog_article_id . '&page={page}');
+			// $pagination->url = $this->url->link('newsblog/related', 'newsblog_path=' . $this->request->get['newsblog_path'] . '&newsblog_article_id=' . $newsblog_article_id . '&page={page}');
+			$pagination->url = 'index.php?route=newsblog/related&newsblog_path=' . $this->request->get['newsblog_path'] . '&newsblog_article_id=' . $newsblog_article_id . '&page={page}';
 
 			$data['pagination_related'] = $pagination->render('next');
 

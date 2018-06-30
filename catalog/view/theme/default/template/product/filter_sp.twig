@@ -1,0 +1,34 @@
+<div class="filter">
+	<h2>Фильтр</h2>
+	<form id="filter-sp" action="{{ action|raw }}" data-region="{{ region|raw }}">
+		<div class="row_flex">
+			<div class="col">
+				<select name="service">
+					<option value="0"> --- Услуга --- </option>
+					{% for service in services %}
+					<option data-href="{{ service.href }}" value="{{ service.category_id }}">{{ service.name }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col">
+				<select name="filter">
+					<option value="0"> --- Регион --- </option>
+					{% for region in regions %}
+					<option value="{{ region.region_id }}">{{ region.name }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col">
+				<select name="rating">
+					<option value="0"> --- Рейтинг --- </option>
+					<option value="1">Высокий рейтинг</option>
+					<option value="2">Низкий рейтинг</option>
+				</select>
+			</div>
+		</div>
+		<div class="align_filter">
+			<input type="hidden" name="category_id" value="{{ category_id }}">
+			<input type="submit" value="Показать">
+		</div>
+	</form>
+</div>

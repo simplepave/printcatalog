@@ -1,0 +1,32 @@
+<ul class="products_services row_flex">
+    <li>
+        <a href="{{ category_top.href }}">
+            <div><img src="/image/catalog/products-services/icon1.png" alt="{{ category_top.name }}"></div>
+            <p>{{ category_top.name }}</p>
+        </a>
+    </li>
+    <li>
+        <a href="{{ categories[0]['href'] }}">
+            <div><img src="/image/catalog/products-services/icon2.png" alt="Услуга"></div>
+            <p>Услуга</p>
+        </a>
+    </li>
+</ul>
+<div class="product_types">
+    <h2>Приоритетные типы продукции</h2>
+    <ul>
+        {% for category in categories %}
+        <li>
+            <a href="{{ category.href }}">
+                <div class="icon"><img src="{{ category.image }}" alt="{{ category.name }}"></div>
+                <p>{{ category.name }}</p>
+            </a>
+            <div class="hover">
+                <a href="{{ category.href }}">
+                    {{ category.description }}
+                </a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

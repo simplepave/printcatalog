@@ -76,7 +76,7 @@ class ModelExtensionModuleTestimonial extends Model
         return $query->rows;
     }
 
-    public function getModuleReviews($start = 0, $limit = 20, $order = 0)
+    public function getModuleReviews($start = 0, $limit = 20, $order = 0, $product_id = 0)
     {
         if ($start < 0) {
             $start = 0;
@@ -99,7 +99,11 @@ class ModelExtensionModuleTestimonial extends Model
             }
         }
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "review WHERE product_id >= '0'  AND status = '1'  " . $sql);
+        if ($product_id)
+            $product_sql = "product_id = '" . (int)$product_id . "'";
+        else $product_sql = "product_id >= '0'";
+
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "review WHERE " . $product_sql . "  AND status = '1'  " . $sql);
 
         return $query->rows;
     }

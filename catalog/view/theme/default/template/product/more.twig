@@ -1,0 +1,27 @@
+{% if products %}
+{% for product in products %}
+<li>
+<a href="{{ product.href }}">
+<div class="img"><img src="{{ product.image }}" alt="{{ product.name }}"></div>
+<div class="text_wrap">
+  <div class="col">
+    <div>
+      <h3>{{ product.name }}</h3>
+      <div class="row_flex">
+        <p>{{ product.review }} отзывов</p>
+        <div>
+          <span>{{ product.rating }}</span>
+          <ul>
+            {% for i in 0..product.ceil if i < product.ceil %}
+            <li><a href="#"></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</a>
+</li>
+{% endfor %}
+{% endif %}

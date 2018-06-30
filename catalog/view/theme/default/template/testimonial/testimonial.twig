@@ -15,7 +15,9 @@
 <div class="container">
     <section>
         <ul id="review" class="reviews_list"></ul>
+        {% if review %}
         <a id="more-review" href="{{ review|raw }}">Загрузить еще</a>
+        {% endif %}
 {% if review_status %}
         <div class="reviews_form">
         {% if review_guest %}

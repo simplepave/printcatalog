@@ -4,6 +4,7 @@
 	<ul>
 		{% for rating in ratings %}
 		<li>
+		<a href="{{ rating.href }}">
 			<div class="img"><img src="{{ rating.image }}" alt="{{ rating.name }}"></div>
 			<div class="text_wrap">
 				<div class="col">
@@ -23,6 +24,7 @@
 					</div>
 				</div>
 			</div>
+		</a>
 		</li>
 		{% endfor %}
 	</ul>

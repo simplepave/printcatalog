@@ -194,7 +194,8 @@ class ControllerNewsBlogCategory extends Controller {
 				$pagination->total = $article_total;
 				$pagination->page = $page;
 				$pagination->limit = $limit;
-				$pagination->url = $this->url->link('newsblog/more', 'newsblog_path=' . $this->request->get['newsblog_path'] . '&page={page}');
+				// $pagination->url = $this->url->link('newsblog/more', 'newsblog_path=' . $this->request->get['newsblog_path'] . '&page={page}');
+				$pagination->url = 'index.php?route=newsblog/more&newsblog_path=' . $this->request->get['newsblog_path'] . '&page={page}';
 
 				$data['pagination'] = $pagination->render('next');
 

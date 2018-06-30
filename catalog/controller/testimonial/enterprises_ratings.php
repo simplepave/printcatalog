@@ -18,7 +18,8 @@ class ControllerTestimonialEnterprisesRatings extends Controller
 		      'image'  => HTTP_SERVER.'image/' . $result['image'],
 		      'rating' => number_format($result['rating'], 1, ',', ''),
 		      'review' => (int)$result['review'],
-		      'ceil'   => ceil($result['rating'])
+		      'ceil'   => ceil($result['rating']),
+		      'href'   => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 		   );
 		}
 

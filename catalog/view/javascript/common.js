@@ -501,6 +501,37 @@ $(document).delegate('.agree', 'click', function(e) {
 jQuery(document).ready(function($){
 
 	/**
+	 * More Product
+	 */
+
+	$('#more-product').click(function(e){
+		e.preventDefault();
+	   var t = $(this);
+	   var href = t.attr('href');
+
+		$.ajax({
+			url: href,
+			dataType: 'json',
+			beforeSend: function() {
+				t.css({'filter': 'grayscale(100%) contrast(90%)'});
+			},
+			complete: function() {
+				t.css({'filter': 'none'});
+			},
+			success: function(json) {
+				if (json.success) {
+					if (!json.next) t.hide();
+					else t.attr('href', json.next.replace(/&amp;/g, "&"));
+
+					$('#more-product-list').append(json.products);
+			}},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+
+	/**
 	 * More Articles
 	 */
 
@@ -618,7 +649,7 @@ jQuery(document).ready(function($){
 				if (json['success']) {
 					$('#block-button-review').before('<div class="text-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
 
-					$('#form-review select[name=\'product_id\']').prop('selectedIndex', 0).trigger( "change" );
+					$('#form-review select[name=\'product_id\']').prop('selectedIndex', 0).trigger('change');
 					$('#form-review input[name=\'name\']').val('');
 					$('#form-review input[name=\'email\']').val('');
 					$('#form-review textarea[name=\'text\']').val('');
@@ -690,4 +721,95 @@ jQuery(document).ready(function($){
 		});
 	});
 
+	// product-product
+
+	if ($('#product-product').length)
+		$('#more-enterprises').hide();
+
+	/**
+	 * Filter SP
+	 */
+
+	$('#filter-sp select[name=\'service\']').on('change', function() {
+	 	var t = $(this), form = $('#filter-sp');
+
+		$.ajax({
+			url: form.attr('data-region'),
+			type: 'post',
+			dataType: 'json',
+			data: form.serialize(),
+			success: function (json) {
+				if (json['success']) {
+					var html = '', region = $('#filter-sp select[name=\'filter\']'), selected;
+
+					$.each(json.regions, function(){
+						selected = region.val() == this.region_id? ' selected="selected"': '';
+						html += '<option value="' + this.region_id + '"' + selected + '>' + this.name + '</option>';
+					});
+
+					$.each(region.children('option'), function(){
+						if ($(this).attr('value') != 0)
+							$(this).remove();
+					});
+
+					region.append(html).trigger('refresh');
+				}
+			}
+		});
+	});
+
+	if ($('#filter-sp').length){
+		$('#filter-sp select').prop('selectedIndex', 0).trigger('refresh');
+
+		var params = window.location.search.replace('?','').split('&')
+			.reduce(function(p,e){
+				var a = e.split('=');
+				p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+				return p;
+			},{});
+
+		if (+params.filter)
+			$('#filter-sp select[name=\'filter\'] option[value=\'' + +params.filter + '\']').prop('selected', true);
+
+		if (+params.rating)
+			$('#filter-sp select[name=\'rating\'] option[value=\'' + +params.rating + '\']').prop('selected', true);
+
+		if (+params.cat)
+			$('#filter-sp select[name=\'service\'] option[value=\'' + +params.cat + '\']').prop('selected', true);
+
+		if (+params.filter || +params.rating || +params.cat)
+			$('html, body').animate({scrollTop: $('#more-product-list').offset().top }, 1100);
+	}
+
+	$('#filter-sp').submit(function (e) {
+		e.preventDefault();
+		var t = $(this);
+		var service = +$('#filter-sp select[name=\'service\']').val();
+		var categoryId = +$('#filter-sp input[name=\'category_id\']').val();
+
+	 	if (service && service != categoryId) {
+	 		var region = 'filter=' + $('#filter-sp select[name=\'filter\']').val();
+	 		var rating = '&rating=' + $('#filter-sp select[name=\'rating\']').val();
+	 		var _url = $('#filter-sp select[name=\'service\'] option:selected')
+	 			.attr('data-href').replace(/&amp;/g, "&");
+	 		var sep = (~_url.indexOf('?'))? '&': '?';
+			window.location = _url + sep + region + rating + '&cat=' + service;
+	 	} else {
+			$.ajax({
+				url: t.attr('action'),
+				dataType: 'json',
+				data:  t.serialize(),
+				success: function (json) {
+					if (json['success']) {
+						var more = $('#more-product');
+
+						if (!json.next) more.hide();
+						else more.show().attr('href', json.next.replace(/&amp;/g, "&"));
+
+						$('#more-product-list').html(json.products);
+						$('html, body').animate({scrollTop: $('#more-product-list').offset().top }, 1100);
+				}}
+			});
+		}
+	});
 });
