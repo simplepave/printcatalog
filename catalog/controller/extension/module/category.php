@@ -25,19 +25,35 @@ class ControllerExtensionModuleCategory extends Controller {
 
 		$data['categories'] = array();
 
-		$category_top = $this->model_catalog_category->getCategory(65);
+		$category_id = (int)$data['category_id'];
+		$category_id = $this->model_catalog_category->getCategoryPath($category_id);
+
+		$category_top = $this->model_catalog_category->getCategory($category_id);
 		$data['category_top'] = [
 			'name' => $category_top['name'],
 		];
 
-		$categories = $this->model_catalog_category->getCategories(65);
+		$categories = $this->model_catalog_category->getCategories($category_id);
 
 		foreach ($categories as $category) {
 			if ($category['top']) {
+				$childrens = $this->model_catalog_category->getCategories($category['category_id']);
+
+				$child = [];
+
+				foreach ($childrens as $children) {
+					$child[] = [
+						'image' => '/image/' . $children['image'],
+						'name'     => $children['name'],
+						'href'     => $this->url->link('product/category', 'path=' . $children['category_id']),
+					];
+				}
+
 				$data['categories'][] = array(
 					'image' => '/image/' . $category['image'],
 					'name'     => $category['name'],
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id']),
+					'children' => $child
 				);
 			}
 		}

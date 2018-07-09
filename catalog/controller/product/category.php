@@ -302,14 +302,17 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['rating']) && (int)$this->request->get['rating'])
 				$url .= '&rating=' . $this->request->get['rating'];
 
+			if (isset($this->request->get['cat']) && (int)$this->request->get['cat'])
+				$url .= '&cat=' . $this->request->get['cat'];
+
 			$pagination = new Pagination();
 			$pagination->total = $product_total;
 			$pagination->page = $page;
 			$pagination->limit = $limit;
-			// $pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
-			$pagination->url = 'index.php?route=product/category/more&path=' . $this->request->get['path'] . $url . '&page={page}';
-
-			$data['pagination'] = $pagination->render('next');
+			$pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
+			$data['pagination'] = $pagination->render();
+			// $pagination->url = 'index.php?route=product/category/more&path=' . $this->request->get['path'] . $url . '&page={page}';
+			// $data['pagination'] = $pagination->render('next');
 
 			$data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
 

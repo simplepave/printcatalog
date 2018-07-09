@@ -13,6 +13,12 @@ class ControllerCommonHomeMenu extends Controller {
 			'href' => $this->url->link('product/category', 'path=' . $category_top['category_id']),
 		];
 
+		$category_uslugi = $this->model_catalog_category->getCategory(67);
+		$data['category_uslugi'] = [
+			'name' => $category_uslugi['name'],
+			'href' => $this->url->link('product/category', 'path=' . $category_uslugi['category_id']),
+		];
+
 		$categories = $this->model_catalog_category->getCategories(65);
 
 		foreach ($categories as $category) {

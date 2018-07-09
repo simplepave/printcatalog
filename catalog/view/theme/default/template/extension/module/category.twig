@@ -10,6 +10,18 @@
           <div><span><img src="{{ category.image }}" alt="{{ category.name }}"></span></div>
           <p>{{ category.name }}</p>
         </a>
+        {% if category.children %}
+          <ul class="category-children">
+            {% for children in category.children %}
+            <li>
+              <a href="{{ children.href }}">
+                <div><span><img src="{{ children.image }}" alt="{{ children.name }}"></span></div>
+                <p>{{ children.name }}</p>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </li>
       {% endfor %}
     </ul>

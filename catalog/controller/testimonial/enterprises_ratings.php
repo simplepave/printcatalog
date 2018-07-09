@@ -6,7 +6,7 @@ class ControllerTestimonialEnterprisesRatings extends Controller
 		$this->load->model('extension/module/testimonial');
 		$this->load->model('tool/image');
 
-		$data['heading_title'] = 'Предприятия с высокими рейтингами';
+		$data['heading_title'] = 'Список предприятий';
 
 		$results = $this->model_extension_module_testimonial->getEnterprisesRating((1 - 1) * 6, 6);
 

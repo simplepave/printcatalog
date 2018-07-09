@@ -777,7 +777,7 @@ jQuery(document).ready(function($){
 		if (+params.cat)
 			$('#filter-sp select[name=\'service\'] option[value=\'' + +params.cat + '\']').prop('selected', true);
 
-		if (+params.filter || +params.rating || +params.cat)
+		if ((+params.filter || +params.rating || +params.cat) && $('#more-product-list').length)
 			$('html, body').animate({scrollTop: $('#more-product-list').offset().top }, 1100);
 	}
 
@@ -787,29 +787,32 @@ jQuery(document).ready(function($){
 		var service = +$('#filter-sp select[name=\'service\']').val();
 		var categoryId = +$('#filter-sp input[name=\'category_id\']').val();
 
-	 	if (service && service != categoryId) {
+
 	 		var region = 'filter=' + $('#filter-sp select[name=\'filter\']').val();
 	 		var rating = '&rating=' + $('#filter-sp select[name=\'rating\']').val();
 	 		var _url = $('#filter-sp select[name=\'service\'] option:selected')
 	 			.attr('data-href').replace(/&amp;/g, "&");
 	 		var sep = (~_url.indexOf('?'))? '&': '?';
 			window.location = _url + sep + region + rating + '&cat=' + service;
-	 	} else {
-			$.ajax({
-				url: t.attr('action'),
-				dataType: 'json',
-				data:  t.serialize(),
-				success: function (json) {
-					if (json['success']) {
-						var more = $('#more-product');
 
-						if (!json.next) more.hide();
-						else more.show().attr('href', json.next.replace(/&amp;/g, "&"));
+		// if (service && service != categoryId) {
+			//
+		// } else {
+		// 	$.ajax({
+		// 		url: t.attr('action'),
+		// 		dataType: 'json',
+		// 		data:  t.serialize(),
+		// 		success: function (json) {
+		// 			if (json['success']) {
+		// 				var more = $('#more-product');
 
-						$('#more-product-list').html(json.products);
-						$('html, body').animate({scrollTop: $('#more-product-list').offset().top }, 1100);
-				}}
-			});
-		}
+		// 				if (!json.next) more.hide();
+		// 				else more.show().attr('href', json.next.replace(/&amp;/g, "&"));
+
+		// 				$('#more-product-list').html(json.products);
+		// 				$('html, body').animate({scrollTop: $('#more-product-list').offset().top }, 1100);
+		// 		}}
+		// 	});
+		// }
 	});
 });

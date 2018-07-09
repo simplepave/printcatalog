@@ -4,11 +4,22 @@ class ControllerProductFilterSP extends Controller
 	public function index()
 	{
 		/**
+		 * Parts
+		 */
+
+		if (isset($this->request->get['path']))
+			$parts = explode('_', (string)$this->request->get['path']);
+		else $parts = array();
+
+		/**
 		 * Service
 		 */
 
+		$category_id = end($parts);
+		$category_id = $this->model_catalog_category->getCategoryPath($category_id);
+
 		$this->load->model('catalog/category');
-		$categories = $this->model_catalog_category->getCategories(65);
+		$categories = $this->model_catalog_category->getCategories($category_id);
 
 		foreach ($categories as $category) {
 			if ($category['top']) {
@@ -23,10 +34,6 @@ class ControllerProductFilterSP extends Controller
 		/**
 		 * Region
 		 */
-
-		if (isset($this->request->get['path']))
-			$parts = explode('_', (string)$this->request->get['path']);
-		else $parts = array();
 
 		$category_id = end($parts);
 		$data['category_id'] = $category_id;
