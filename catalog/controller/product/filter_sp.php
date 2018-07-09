@@ -11,15 +11,18 @@ class ControllerProductFilterSP extends Controller
 			$parts = explode('_', (string)$this->request->get['path']);
 		else $parts = array();
 
+		$category_id = end($parts);
+		$data['category_id'] = $category_id;
+
 		/**
 		 * Service
 		 */
 
-		$category_id = end($parts);
-		$category_id = $this->model_catalog_category->getCategoryPath($category_id);
+		$data['service_default'] = $this->url->link('product/category', 'path=' . $category_id);
 
 		$this->load->model('catalog/category');
-		$categories = $this->model_catalog_category->getCategories($category_id);
+		$category_top = $this->model_catalog_category->getCategoryPath($category_id);
+		$categories = $this->model_catalog_category->getCategories($category_top);
 
 		foreach ($categories as $category) {
 			if ($category['top']) {
@@ -34,9 +37,6 @@ class ControllerProductFilterSP extends Controller
 		/**
 		 * Region
 		 */
-
-		$category_id = end($parts);
-		$data['category_id'] = $category_id;
 
 		$this->load->model('catalog/product');
 		$product_filters = $this->model_catalog_product->getProductFilters($category_id);

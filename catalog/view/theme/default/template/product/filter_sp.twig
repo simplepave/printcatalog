@@ -4,7 +4,7 @@
 		<div class="row_flex">
 			<div class="col">
 				<select name="service">
-					<option value="0"> --- Услуга --- </option>
+					<option data-href="{{ service_default }}" value="0"> --- Услуга --- </option>
 					{% for service in services %}
 					<option data-href="{{ service.href }}" value="{{ service.category_id }}">{{ service.name }}</option>
 					{% endfor %}

@@ -793,7 +793,9 @@ jQuery(document).ready(function($){
 	 		var _url = $('#filter-sp select[name=\'service\'] option:selected')
 	 			.attr('data-href').replace(/&amp;/g, "&");
 	 		var sep = (~_url.indexOf('?'))? '&': '?';
-			window.location = _url + sep + region + rating + '&cat=' + service;
+	 		var category = service? '&cat=' + service: '&cat=' + categoryId;
+
+			window.location = _url + sep + region + rating + category;
 
 		// if (service && service != categoryId) {
 			//
