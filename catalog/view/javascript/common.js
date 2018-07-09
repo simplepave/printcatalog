@@ -783,19 +783,26 @@ jQuery(document).ready(function($){
 
 	$('#filter-sp').submit(function (e) {
 		e.preventDefault();
-		var t = $(this);
+		var t = $(this), getParams = [];
 		var service = +$('#filter-sp select[name=\'service\']').val();
 		var categoryId = +$('#filter-sp input[name=\'category_id\']').val();
 
+			var region = +$('#filter-sp select[name=\'filter\']').val();
+			var rating = +$('#filter-sp select[name=\'rating\']').val();
 
-	 		var region = 'filter=' + $('#filter-sp select[name=\'filter\']').val();
-	 		var rating = '&rating=' + $('#filter-sp select[name=\'rating\']').val();
+			if (region) getParams.push('filter=' + region);
+			if (rating) getParams.push('rating=' + rating);
+			if (service) getParams.push('cat=' + service);
+			// else getParams.push('cat=' + categoryId);
+
 	 		var _url = $('#filter-sp select[name=\'service\'] option:selected')
 	 			.attr('data-href').replace(/&amp;/g, "&");
 	 		var sep = (~_url.indexOf('?'))? '&': '?';
-	 		var category = service? '&cat=' + service: '&cat=' + categoryId;
 
-			window.location = _url + sep + region + rating + category;
+	 		getParams = getParams.join('&');
+
+	 		if (getParams)
+	 			window.location = _url + sep + getParams;
 
 		// if (service && service != categoryId) {
 			//
