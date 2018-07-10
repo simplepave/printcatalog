@@ -825,3 +825,15 @@ jQuery(document).ready(function($){
 		// }
 	});
 });
+
+/*menu*/
+$(document).ready(function(){
+	$.easing.def = 'easeInOutQuad';
+	$('.children-trigger').on("click", function(e){
+		var dropDown = $(this).next('ul');
+
+		$('.category-children').not(dropDown).slideUp('slow');
+		dropDown.slideToggle('slow');
+		e.preventDefault();
+	});
+});

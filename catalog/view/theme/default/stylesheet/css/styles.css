@@ -1080,6 +1080,7 @@ nav ul li a:hover {
 
 .nav ul li {
 	border-bottom:1px solid #dcdcdc;
+	position: relative;
 }
 
 .nav ul li a {
@@ -1495,4 +1496,72 @@ footer p span {
 		width: 90%;
 		height: 290px;
 	}
+}
+ul.pagination {
+	font-size: 16px!important;
+	padding-bottom: 0!important;
+	justify-content: center;
+}
+ul.pagination li {
+    margin-bottom: 0!important;
+    margin: 10px;
+    background: #fd6233;
+    width: 30px!important;
+    color: #fff!important;
+    height: 30px!important;
+    vertical-align: middle!important;
+    text-align: center;
+    border-radius: 15px;
+}
+ul.pagination li a {
+    color: #fff!important;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 30px;
+    font-family: 'GothaProBol';
+    width: 32px;
+}
+ul.pagination li.active span {
+	text-decoration: underline;
+	 line-height: 30px;
+    font-family: 'GothaProBol';
+    vertical-align: middle;
+}
+ul.pagination li a {
+	color: #000;
+}
+ul.category-children {
+	display: none;
+}
+ul.category-children li div  {
+	width: auto;
+	margin-left: 125px;
+    margin-right: 10px;
+}
+ul.category-children li a {
+	height: 38px;
+}
+ul.category-children li div span  {
+	width: auto;
+    text-align: center;
+    font-size: 20px;
+    color: #fd6233;
+    display: inline-block;
+}
+ul.category-children li p {
+	width: 100%;
+}
+.children-trigger {
+	position: absolute;
+    right: 35px;
+    top: 27px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    background: #fd6233;
+    width: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 15px;
+    vertical-align: middle;
 }
