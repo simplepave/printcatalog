@@ -131,6 +131,7 @@ nav ul li a:hover {
 	background:url(../../image/bg-title.jpg) no-repeat center top;
 	color:#fff;
 	padding:60px 0 65px;
+	background-size: cover;
 }
 
 .main_title {
@@ -1564,4 +1565,57 @@ ul.category-children li p {
     line-height: 25px;
     border-radius: 15px;
     vertical-align: middle;
+}
+.orange-btn {
+	background-color: #fd6d30;
+    border-radius: 34px;
+    -moz-border-radius: 34px;
+    -webkit-border-radius: 34px;
+    width: 230px;
+    font-size: 20px;
+    line-height: 50px;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+}
+.orange-btn:hover {
+	    background-color: #ffa423;
+	    cursor: pointer;
+}
+.header-btn {
+	margin-top: 20px;
+}
+.order-modal-wrapper {
+	max-width: 370px;
+	box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0px;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    color: #606060;
+    background: url(../../image/modal-bg.png) no-repeat left -120px bottom -70px #fff;
+}
+.order-modal {
+	width: 100%;
+	height: 100%;
+	background: url(../../image/modal-bg.png) no-repeat right -135px top -145px transparent;
+}
+.order-modal form {
+	padding: 70px 85px;
+}
+.order-modal form input[type="text"] {
+	border: 2px solid #c9c9c9;
+	font-size: 17px;
+	display: inline-block;
+	line-height: 50px;
+	text-align: center;
+	width: 200px;
+	margin-bottom: 5px;
+	border-radius: 25px;
+}
+.modal-btn {
+	width: 200px;
+	margin-top: 15px;
 }

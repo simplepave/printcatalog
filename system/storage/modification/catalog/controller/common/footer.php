@@ -75,6 +75,8 @@ class ControllerCommonFooter extends Controller {
 
 		$data['scripts'] = $this->document->getScripts('footer');
 
+		$data['action_callout'] = $this->url->link('mail/callout', '', true);
+
 		return $this->load->view('common/footer', $data);
 	}
 }

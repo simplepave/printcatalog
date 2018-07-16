@@ -824,6 +824,42 @@ jQuery(document).ready(function($){
 		// 	});
 		// }
 	});
+
+	/**
+	 * Call Out
+	 */
+
+	$('form.call_out').submit(function(e) {
+		e.preventDefault();
+      var t = $(this);
+      var is = t.attr('class');
+
+      $.ajax({
+			url: t.attr('action'),
+			type: 'post',
+			data: t.serialize(),
+			dataType: 'json',
+			success: function(json) {// console.log(json);
+				t.find('.text-success, .text-danger').remove();
+
+				if (json.success) {
+					// if (is == 'call_out')
+					// 	t.hide().prev('h3').text(json.text_success);
+
+					// if (is == 'question')
+						t.find('input[type=\'submit\']').before('<div class="text-success">' + json.text_success + '</div>');
+				}
+
+				if (json.error) {
+					t.find('input[type=\'submit\']').before('<div class="text-danger">' + json.error_enquiry + '</div>');
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+
 });
 
 /*menu*/
