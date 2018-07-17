@@ -7,7 +7,7 @@ class ControllerMailCallout extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			if (isset($this->request->post['enquiry'])) {
-				$data['heder'] = sprintf($this->language->get('text_question'), $this->request->post['name']);
+				$data['heder'] = sprintf($this->language->get('text_order'), $this->request->post['name']);
 				$data['enquiry'] = $this->request->post['enquiry'];
 			} else
 

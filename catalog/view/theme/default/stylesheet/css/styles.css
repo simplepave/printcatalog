@@ -1605,7 +1605,7 @@ ul.category-children li p {
 .order-modal form {
 	padding: 70px 85px;
 }
-.order-modal form input[type="text"] {
+.order-modal form input[type="text"]  {
 	border: 2px solid #c9c9c9;
 	font-size: 17px;
 	    text-indent: 0;
@@ -1615,6 +1615,7 @@ ul.category-children li p {
 	width: 200px;
 	margin-bottom: 5px;
 	border-radius: 25px;
+	padding: 5px 10px;
 }
 .modal-btn {
 	width: 200px;
