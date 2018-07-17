@@ -1608,6 +1608,7 @@ ul.category-children li p {
 .order-modal form input[type="text"] {
 	border: 2px solid #c9c9c9;
 	font-size: 17px;
+	    text-indent: 0;
 	display: inline-block;
 	line-height: 50px;
 	text-align: center;
@@ -1618,4 +1619,16 @@ ul.category-children li p {
 .modal-btn {
 	width: 200px;
 	margin-top: 15px;
+}
+.filter-btn {
+	display: block;
+}
+@media screen and (max-width: 767px) {
+	.filter-btn {
+    display: inline-block;
+    width: 130px;
+}
+}
+.align_filter {
+	margin-top: -50px;
 }
